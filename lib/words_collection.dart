@@ -7,32 +7,21 @@ class Words {
 }
 
 class OnlyNumbers {
-  late final List<int> list;
-
-  OnlyNumbers(Words words) {
-    list = words.list.map((e) => int.tryParse(e)).whereType<int>().toList();
-  }
-
-  @override
-  String toString() {
-    return list.toString();
+  static List<int> find(Words words) {
+    return words.list.map((e) => int.tryParse(e)).whereType<int>().toList();
   }
 }
 
 typedef WordsStatsMap = Map<String, int>;
 
 class WordsIncludingStats {
-  WordsStatsMap stats = {};
-
-  WordsIncludingStats(Words words) {
+  static WordsStatsMap compute(Words words) {
+    WordsStatsMap stats = {};
     for (var word in words.list) {
       stats[word] = (stats[word] ?? 0) + 1;
     }
-  }
 
-  @override
-  String toString() {
-    return stats.toString();
+    return stats;
   }
 }
 
@@ -49,19 +38,14 @@ Map<String, int> _numbers = {
   'nine': 9,
 };
 
-class NumbersSet {
-  Set<int> set = {};
-
-  NumbersSet(Words words) {
+class OnlyUniqueNumbersSet {
+  static Set<int> create(Words words) {
+    Set<int> set = {};
     for (var word in words.list) {
       if (_numbers.containsKey(word)) {
         set.add(_numbers[word]!);
       }
     }
-  }
-
-  @override
-  String toString() {
-    return set.toString();
+    return set;
   }
 }

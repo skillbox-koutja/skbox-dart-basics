@@ -1,9 +1,7 @@
 import 'package:start/swap.dart';
 
 class GreatestCommonDivisor {
-  late final int value;
-
-  GreatestCommonDivisor(int a, int b) {
+  static int compute(int a, int b) {
     var arr = [a, b];
     if (a < b) {
       swap(arr, 0, 1);
@@ -14,32 +12,27 @@ class GreatestCommonDivisor {
       swap(arr, 0, 1);
     }
 
-    value = arr[0];
+    return arr[0];
   }
 }
 
 class LeastCommonMultiple {
-  late final int value;
+  static int compute(int a, int b) {
+    var x = a ~/ GreatestCommonDivisor.compute(a, b);
 
-  LeastCommonMultiple(int a, int b) {
-    var x = a ~/ GreatestCommonDivisor(a, b).value;
-
-    value = x * b;
+    return x * b;
   }
 }
 
 class PrimeFactorization {
-  late final List<int> result;
-
-  PrimeFactorization(int n) {
+  static List<int> find(int n) {
     if (n <= 1) {
-      result = [n];
-      return;
+      return [n];
     }
 
     var primeNumbers = PrimeNumbers(n);
 
-    result = [primeNumbers.next()];
+    final List<int> result = [primeNumbers.next()];
     var div = primeNumbers.next();
     while (n > 1) {
       while (n % div == 0) {
@@ -49,9 +42,11 @@ class PrimeFactorization {
       if (primeNumbers.isNotEnd()) {
         div = primeNumbers.next();
       } else {
-        return;
+        break;
       }
     }
+
+    return result;
   }
 }
 
@@ -87,9 +82,7 @@ class PrimeNumbers {
 }
 
 class NthRoot {
-  late final double value;
-
-  NthRoot(double num, int n) {
+  static double compute(double num, int n) {
     if (n <= 0) {
       throw ArgumentError('"n" must be greater 0');
     }
@@ -99,8 +92,7 @@ class NthRoot {
     }
 
     if (num == 0.0) {
-      value = 0.0;
-      return;
+      return 0.0;
     }
 
     var xPre = 1.0;
@@ -114,7 +106,7 @@ class NthRoot {
       xPre = xK;
     }
 
-    value = double.parse((xK).toStringAsFixed(3));
+    return double.parse((xK).toStringAsFixed(3));
   }
 }
 

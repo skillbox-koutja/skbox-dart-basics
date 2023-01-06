@@ -9,6 +9,11 @@ void main() {
     expect(GreatestCommonDivisor(15, 12).value, 3);
     expect(LeastCommonMultiple(15, 12).value, 60);
 
+    expectListsIsEqual(PrimeFactorization(1).result, [1]);
+    expectListsIsEqual(PrimeFactorization(2).result, [1, 2]);
+    expectListsIsEqual(PrimeFactorization(3).result, [1, 3]);
+    expectListsIsEqual(PrimeFactorization(5).result, [1, 5]);
+    expectListsIsEqual(PrimeFactorization(7).result, [1, 7]);
     expectListsIsEqual(PrimeFactorization(12).result, [1, 2, 2, 3]);
     expectListsIsEqual(PrimeFactorization(15).result, [1, 3, 5]);
 

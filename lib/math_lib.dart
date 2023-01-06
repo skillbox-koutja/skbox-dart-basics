@@ -1,6 +1,5 @@
 import 'package:start/swap.dart';
 
-// НОД. наибольший общий делитель.
 class GreatestCommonDivisor {
   late final int value;
 
@@ -19,16 +18,13 @@ class GreatestCommonDivisor {
   }
 }
 
-// НОК. наименьшее общее кратное.
 class LeastCommonMultiple {
   late final int value;
 
   LeastCommonMultiple(int a, int b) {
     var x = a ~/ GreatestCommonDivisor(a, b).value;
 
-    value = x * b; //используя форму a * b / gcd(a, b),
-    //можно получить переполнение на этапе a * b,
-    //поэтому следует выполнять деление до умножения
+    value = x * b;
   }
 }
 
@@ -48,14 +44,17 @@ class PrimeFactorization {
     while (n > 1) {
       while (n % div == 0) {
         result.add(div);
-        n = n ~/ div; // целочисленное деление = (n / div).toInt()
+        n = n ~/ div;
       }
-      div = primeNumbers.next();
+      if (primeNumbers.isNotEnd()) {
+        div = primeNumbers.next();
+      } else {
+        return;
+      }
     }
   }
 }
 
-// Решето Эратосфена. Sieve of Eratosthenes
 class PrimeNumbers {
   int index = 0;
 
@@ -78,12 +77,15 @@ class PrimeNumbers {
     return list[index++];
   }
 
+  isNotEnd() {
+    return index < list.length;
+  }
+
   reset() {
     index = 0;
   }
 }
 
-// Нахождение корня n-ой степени
 class NthRoot {
   late final double value;
 

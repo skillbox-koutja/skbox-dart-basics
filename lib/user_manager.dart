@@ -24,12 +24,12 @@ mixin MailSystem on User {
   }
 }
 
-class UserManager<TUser extends User> {
-  final List<TUser> list = [];
+class UserManager<T extends User> {
+  final List<T> list = [];
 
-  void add(TUser user) => list.add(user);
+  void add(T user) => list.add(user);
 
-  void remove(TUser user) => list.remove(user);
+  void remove(T user) => list.remove(user);
 
   void removeByEmail(String email) =>
       list.removeWhere((user) => user.email == email);
